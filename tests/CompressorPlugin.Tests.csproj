@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <!-- xunit.v3 ships its own test host; the runner launches the test
+         assembly as an executable. -->
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\CompressorPlugin.csproj" />
+
+    <!-- The plugin compiles against these but strips them from its runtime
+         output (ExcludeAssets="runtime"), since the host supplies the live
+         copies. That exclusion flows transitively through the ProjectReference
+         above, so tests — which run with no host — must pull them in directly
+         to get SoundBoard.PluginApi (ISamplerInstance) and NAudio.Core
+         (ISampleProvider / WaveFormat) at runtime. Avalonia is not needed:
+         the tests never call CreateControl(). -->
+    <PackageReference Include="SoundBoard.PluginApi" Version="1.0.0-beta.1" />
+    <PackageReference Include="NAudio.Core" Version="2.3.0" />
+
+    <PackageReference Include="xunit.v3" Version="3.2.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.6.0" />
+    <!-- FluentAssertions pinned to 7.x: 8.x changed to a paid license. -->
+    <PackageReference Include="FluentAssertions" Version="7.2.2" />
+  </ItemGroup>
+
+</Project>

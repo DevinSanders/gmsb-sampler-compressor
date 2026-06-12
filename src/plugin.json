@@ -1,0 +1,10 @@
+{
+  "publisher": "github.DevinSanders",
+  "id": "sampler.compressor",
+  "name": "Compressor",
+  "version": "1.0.0",
+  "author": "Devin Sanders",
+  "description": "Dynamic-range compressor. Stops loud SFX from blasting; tames volume spikes.",
+  "entryDll": "CompressorPlugin.dll",
+  "isTheme": false
+}
